@@ -34,14 +34,31 @@ int main(int argc, char **argv){
     // VARIABLES
     bool game_over;
     char grid[BOARD_HEIGHT][BOARD_WIDTH];
+    char answer;
 
     int current_player;
     char player1 = 'X';
     char player2 = 'O';
 
 
+    // RUN LOOP
+    while (true) {
 
-    printf("Welcome to Tic-Tac-Toe!\n");
+        // GAME LOOP
+        game_over = false;
+        initializeBoard(grid);
+
+        // while (!game_over) {
+        //
+        // }
+
+        // Ask user if they want to play again
+        printf("Would you like to play again? (y/n): ");
+        scanf(" %c", &answer);
+        if (answer == 'n') {
+            break;
+        }
+    }
 
     return 0;
 }
