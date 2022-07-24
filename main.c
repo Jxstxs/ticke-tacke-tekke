@@ -1,4 +1,3 @@
-
 // Simple Tic-Tac-Toe Game where you can play against the computer
 
 // INCLUDES
@@ -48,9 +47,9 @@ int main(int argc, char **argv){
         game_over = false;
         initializeBoard(grid);
 
-        // while (!game_over) {
-        //
-        // }
+        while (!game_over) {
+
+        }
 
         // Ask user if they want to play again
         printf("Would you like to play again? (y/n): ");
@@ -87,7 +86,6 @@ void printBoard(char board[BOARD_HEIGHT][BOARD_WIDTH]) {
             } else {
                 printf("%c | ", board[i][j]);
             }
-            // printf("%c", board[i][j]);
         }
         if (i+1 == BOARD_HEIGHT) {
             printf("\n");
