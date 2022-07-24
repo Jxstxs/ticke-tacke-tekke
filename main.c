@@ -74,7 +74,7 @@ void printInstructions() {
 void initializeBoard(char board[BOARD_HEIGHT][BOARD_WIDTH]) {
     for (int i = 0; i < BOARD_HEIGHT; i++) {
         for (int j = 0; j < BOARD_WIDTH; j++) {
-            board[i][j] = ' ';
+            board[i][j] = i * BOARD_WIDTH + j + '1';
         }
     }
 }
