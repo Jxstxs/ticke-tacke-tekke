@@ -4,6 +4,7 @@
 // INCLUDES
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 
 // DEFINES
 #define BOARD_HEIGHT 3
@@ -23,6 +24,12 @@ int checkForTie(char board[BOARD_HEIGHT][BOARD_WIDTH]);
 // MAIN FUNCTUION
 int main(int argc, char **argv){
     // printf("Welcome to Tic-Tac-Toe!\n");
+
+    // check for help flag
+    if(argc == 2 && (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0)){
+        printInstructions();
+        return 0;
+    }
 
     // VARIABLES
     bool game_over;
