@@ -42,6 +42,7 @@ int main(int argc, char **argv){
     bool game_over;
     char grid[BOARD_HEIGHT][BOARD_WIDTH];
     char answer;
+    int field;
 
     int current_player;
     char player1 = 'X';
@@ -54,9 +55,35 @@ int main(int argc, char **argv){
         // GAME LOOP
         game_over = false;
         initializeBoard(grid);
+        current_player = 1;
 
         while (!game_over) {
+        turn_begin:
+            system("clear");
+            printBoard(grid);
 
+            printf("Player %d's turn: ", current_player);
+            scanf("%d", &field);
+
+            // check if input is valid
+            if (field < 1 || field > 9) {
+                printf("Invalid input.\n");
+                sleep(2);
+                goto turn_begin;
+            }
+
+            // check if field is already taken
+            if (!checkBoard(grid, field)) {
+                printf("Field is already taken.\n");
+                sleep(2);
+                goto turn_begin;
+            }
+
+            // set field to current player
+            setBoard(grid, field, (current_player == 1) ? player1 : player2);
+
+            // switch players
+            current_player = current_player == 1 ? 2 : 1;
         }
 
         // Ask user if they want to play again
