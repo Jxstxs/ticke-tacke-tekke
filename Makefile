@@ -6,4 +6,4 @@ all:
 	$(CC) $(CFLAGS) -o ttt main.c
 
 clean:
-	rm -f $(BIN) $(OBJ)
+	rm -f $(BIN)
