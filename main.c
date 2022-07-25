@@ -19,6 +19,8 @@ void printInstructions();
 // Board Functions
 void printBoard(char board[BOARD_HEIGHT][BOARD_WIDTH]);
 void initializeBoard(char board[BOARD_HEIGHT][BOARD_WIDTH]);
+bool checkBoard(char board[BOARD_HEIGHT][BOARD_WIDTH], int field);
+void setBoard(char board[BOARD_HEIGHT][BOARD_WIDTH], int field, char player);
 
 // Logic Functions
 int checkForWinner(char board[BOARD_HEIGHT][BOARD_WIDTH]);
@@ -99,6 +101,24 @@ void printBoard(char board[BOARD_HEIGHT][BOARD_WIDTH]) {
             printf("\n");
         } else {
             printf("\n-----------\n");
+
+bool checkBoard(char board[BOARD_HEIGHT][BOARD_WIDTH], int field) {
+    for (int i = 0; i < BOARD_HEIGHT; i++) {
+        for (int j = 0; j < BOARD_WIDTH; j++) {
+            if (CAST(board[i][j]) == field) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+void setBoard(char board[BOARD_HEIGHT][BOARD_WIDTH], int field, char player) {
+    for (int i = 0; i < BOARD_HEIGHT; i++) {
+        for (int j = 0; j < BOARD_WIDTH; j++) {
+            if (CAST(board[i][j]) == field) {
+                board[i][j] = player;
+            }
         }
     }
 }
