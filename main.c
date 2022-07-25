@@ -74,7 +74,6 @@ int main(int argc, char **argv){
 
 void printInstructions() {
     printf("Welcome to Tic-Tac-Toe!\n\n");
-    printf("The goal of the game is to get three in a row.\n");
     printf("You can play against the computer.\n");
     printf("The squares are numbered 1-9.\n");
     printf("The first player to get three in a row wins.\n");
@@ -92,7 +91,7 @@ void printBoard(char board[BOARD_HEIGHT][BOARD_WIDTH]) {
     for (int i = 0; i < BOARD_HEIGHT; i++) {
         for (int j = 0; j < BOARD_WIDTH; j++) {
             if (j+1 == BOARD_WIDTH) {
-                printf("%c\n", board[i][j]);
+                printf("%c", board[i][j]);
             } else {
                 printf("%c | ", board[i][j]);
             }
@@ -100,7 +99,10 @@ void printBoard(char board[BOARD_HEIGHT][BOARD_WIDTH]) {
         if (i+1 == BOARD_HEIGHT) {
             printf("\n");
         } else {
-            printf("\n-----------\n");
+            printf("\n----------\n");
+        }
+    }
+}
 
 bool checkBoard(char board[BOARD_HEIGHT][BOARD_WIDTH], int field) {
     for (int i = 0; i < BOARD_HEIGHT; i++) {
