@@ -2,12 +2,15 @@
 
 // INCLUDES
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include <stdbool.h>
 #include <string.h>
 
 // DEFINES
 #define BOARD_HEIGHT 3
 #define BOARD_WIDTH 3
+#define CAST(x) (int)x-48
 
 // FUNCTIONS
 void printInstructions();
