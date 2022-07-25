@@ -13,7 +13,9 @@
 #define CAST(x) (int)x-48
 
 // FUNCTIONS
+// Help Function
 void printInstructions();
+
 // Board Functions
 void printBoard(char board[BOARD_HEIGHT][BOARD_WIDTH]);
 void initializeBoard(char board[BOARD_HEIGHT][BOARD_WIDTH]);
@@ -22,6 +24,7 @@ void initializeBoard(char board[BOARD_HEIGHT][BOARD_WIDTH]);
 int checkForWinner(char board[BOARD_HEIGHT][BOARD_WIDTH]);
 int checkForTie(char board[BOARD_HEIGHT][BOARD_WIDTH]);
 
+// FUNCTIONS
 
 // MAIN FUNCTUION
 int main(int argc, char **argv){
@@ -64,6 +67,8 @@ int main(int argc, char **argv){
 
     return 0;
 }
+
+// MAIN FUNCTION
 
 void printInstructions() {
     printf("Welcome to Tic-Tac-Toe!\n\n");
