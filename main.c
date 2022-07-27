@@ -25,7 +25,7 @@ bool checkBoard(char board[BOARD_HEIGHT][BOARD_WIDTH], int field);
 void setBoard(char board[BOARD_HEIGHT][BOARD_WIDTH], int field, char player);
 
 // Logic Functions
-int checkForWinner(char board[BOARD_HEIGHT][BOARD_WIDTH]);
+char checkForWinner(char board[BOARD_HEIGHT][BOARD_WIDTH]);
 int checkForTie(char board[BOARD_HEIGHT][BOARD_WIDTH]);
 
 // FUNCTIONS
@@ -46,6 +46,7 @@ int main(int argc, char **argv){
     char answer;
     int field;
     int current_player;
+    char winner;
 
     // RUN LOOP
     while (true) {
@@ -54,11 +55,19 @@ int main(int argc, char **argv){
         game_over = false;
         initializeBoard(board);
         current_player = 1;
+        winner = '0';
 
         while (!game_over) {
         turn_begin:
             system("clear");
             printBoard(board);
+
+            // print winner 
+            if (winner != '0') {
+                printf("The Player with the Character %c won!\n", winner);
+                game_over = true;
+                break;
+            }
 
             printf("Player %d's turn: ", current_player);
             scanf("%d", &field);
@@ -79,6 +88,9 @@ int main(int argc, char **argv){
 
             // set field to current player
             setBoard(board, field, (current_player == 1) ? PLAYER_ONE : PLAYER_TWO);
+
+            // check for win
+            winner = checkForWinner(board);
 
             // switch players
             current_player = current_player == 1 ? 2 : 1;
@@ -148,4 +160,28 @@ void setBoard(char board[BOARD_HEIGHT][BOARD_WIDTH], int field, char player) {
             }
         }
     }
+}
+
+char checkForWinner(char board[BOARD_HEIGHT][BOARD_WIDTH]) {
+
+    // check for horizontal win
+    for (int i = 0; i < BOARD_HEIGHT; i++) {
+        if (board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
+            return board[i][0];
+        }
+    }
+
+    // check for vertical win
+    for (int i = 0; i < BOARD_WIDTH; i++) {
+        if (board[0][i] == board[1][i] && board[1][i] == board[2][i]) {
+            return board[0][i];
+        }
+    }
+
+    // check for diagonal win
+    if ((board[0][0] == board[1][1] && board[1][1] == board[2][2]) || (board[0][2] == board[1][1] && board[1][1] == board[2][0])) {
+        return board[1][1];
+    }
+
+    return '0';
 }
