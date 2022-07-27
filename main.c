@@ -10,6 +10,8 @@
 // DEFINES
 #define BOARD_HEIGHT 3
 #define BOARD_WIDTH 3
+#define PLAYER_ONE 'X'
+#define PLAYER_TWO 'O'
 #define CAST(x) (int)x-48
 
 // FUNCTIONS
@@ -40,27 +42,23 @@ int main(int argc, char **argv){
 
     // VARIABLES
     bool game_over;
-    char grid[BOARD_HEIGHT][BOARD_WIDTH];
+    char board[BOARD_HEIGHT][BOARD_WIDTH];
     char answer;
     int field;
-
     int current_player;
-    char player1 = 'X';
-    char player2 = 'O';
-
 
     // RUN LOOP
     while (true) {
 
         // GAME LOOP
         game_over = false;
-        initializeBoard(grid);
+        initializeBoard(board);
         current_player = 1;
 
         while (!game_over) {
         turn_begin:
             system("clear");
-            printBoard(grid);
+            printBoard(board);
 
             printf("Player %d's turn: ", current_player);
             scanf("%d", &field);
@@ -73,14 +71,14 @@ int main(int argc, char **argv){
             }
 
             // check if field is already taken
-            if (!checkBoard(grid, field)) {
+            if (!checkBoard(board, field)) {
                 printf("Field is already taken.\n");
                 sleep(2);
                 goto turn_begin;
             }
 
             // set field to current player
-            setBoard(grid, field, (current_player == 1) ? player1 : player2);
+            setBoard(board, field, (current_player == 1) ? PLAYER_ONE : PLAYER_TWO);
 
             // switch players
             current_player = current_player == 1 ? 2 : 1;
