@@ -69,6 +69,12 @@ int main(int argc, char **argv){
                 break;
             }
 
+            if (winner != '1') {
+                printf("Both Players are Loosers and nobody Wins!\n");
+                game_over = true;
+                break;
+            }
+
             printf("Player %d's turn: ", current_player);
             scanf("%d", &field);
 
@@ -181,6 +187,15 @@ char checkForWinner(char board[BOARD_HEIGHT][BOARD_WIDTH]) {
     // check for diagonal win
     if ((board[0][0] == board[1][1] && board[1][1] == board[2][2]) || (board[0][2] == board[1][1] && board[1][1] == board[2][0])) {
         return board[1][1];
+    }
+
+    // check for tie
+    for(int i = 0; i < BOARD_HEIGHT; i++) {
+        for(int j = 0; j < BOARD_WIDTH; j++) {
+            if (board[i][j] == PLAYER_ONE || board[i][j] == PLAYER_TWO ) {
+                return '1';
+            }
+        }
     }
 
     return '0';
