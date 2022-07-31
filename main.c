@@ -26,7 +26,7 @@ void setBoard(char board[BOARD_HEIGHT][BOARD_WIDTH], int field, char player);
 
 // Logic Functions
 char checkForWinner(char board[BOARD_HEIGHT][BOARD_WIDTH]);
-int checkForTie(char board[BOARD_HEIGHT][BOARD_WIDTH]);
+// int checkForTie(char board[BOARD_HEIGHT][BOARD_WIDTH]);
 
 // FUNCTIONS
 
@@ -64,13 +64,17 @@ int main(int argc, char **argv){
 
             // print winner 
             if (winner != '0') {
+                switch (winner) {
+                    case PLAYER_ONE || PLAYER_TWO:
+                        printf("Player %c wins!\n", winner);
+                        game_over = true;
+                        break;
+                    case '1':
+                        printf("Its a Tie!\n");
+                        game_over = true;
+                        break;
+                }
                 printf("The Player with the Character %c won!\n", winner);
-                game_over = true;
-                break;
-            }
-
-            if (winner != '1') {
-                printf("Both Players are Loosers and nobody Wins!\n");
                 game_over = true;
                 break;
             }
@@ -190,13 +194,15 @@ char checkForWinner(char board[BOARD_HEIGHT][BOARD_WIDTH]) {
     }
 
     // check for tie
-    for(int i = 0; i < BOARD_HEIGHT; i++) {
-        for(int j = 0; j < BOARD_WIDTH; j++) {
-            if (board[i][j] == PLAYER_ONE || board[i][j] == PLAYER_TWO ) {
+    for (int i = 0; i < BOARD_HEIGHT; i++) {
+        for (int j = 0; j < BOARD_WIDTH; j++) {
+            if (board[i][j] == (i * BOARD_WIDTH + j + '1')) {
                 return '1';
             }
+            
         }
     }
+
 
     return '0';
 }
